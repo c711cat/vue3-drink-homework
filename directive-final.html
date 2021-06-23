@@ -62,15 +62,19 @@
                         <label for="productNum" class="form-label d-block"
                           >冰塊*</label
                         >
-                        <div class="form-check form-check-inline">
+                        <div
+                          class="form-check form-check-inline"
+                          v-for="(ice,i) in iceType"
+                          :key=" 'ice'+ i "
+                        >
                           <input
                             class="form-check-input"
                             name="iceType"
                             type="radio"
-                            id="正常冰"
+                            :id=" 'ice'+ i"
                           />
-                          <label class="form-check-label" for="正常冰"
-                            >正常冰</label
+                          <label class="form-check-label" :for="'ice'+ i"
+                            >{{ice}}</label
                           >
                         </div>
                       </div>
