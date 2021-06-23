@@ -27,7 +27,7 @@
                     <a
                       v-for="drink in products"
                       :key="drink.name"
-                      @click="clickDrinks"
+                      @click="clickDrinks(drink)"
                       href="#"
                       class="list-group-item list-group-item-action"
                     >
@@ -76,6 +76,7 @@
                           id="productNum"
                           placeholder="數量"
                           min="0"
+                          v-model="num"
                         />
                       </div>
                       <div class="mb-3">
@@ -247,6 +248,8 @@
               data() {
                 return {
                   chooseDrinksFirst: true,
+                  order: {},
+                  num: "",
                   iceType: ["正常冰", "少冰", "微冰", "去冰", "熱"],
                   sugarType: ["全糖", "七分", "半糖", "三分", "無糖"],
                   toppingsType: ["珍珠", "粉條", "小粉圓", "椰果", "芋頭"],
@@ -365,8 +368,9 @@
                 };
               },
               methods: {
-                clickDrinks() {
+                clickDrinks(drink) {
                   this.chooseDrinksFirst = false;
+                  this.num = 1;
                 },
               },
             };
