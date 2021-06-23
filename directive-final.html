@@ -149,6 +149,7 @@
                           >備註</label
                         >
                         <textarea
+                          v-model="drinkPS"
                           class="form-control"
                           id="productNotice"
                           rows="2"
@@ -161,7 +162,11 @@
                         >
                           取消
                         </button>
-                        <button class="btn btn-primary w-100" type="button">
+                        <button
+                          @click="addDrinks"
+                          class="btn btn-primary w-100"
+                          type="button"
+                        >
                           加入
                         </button>
                       </div>
@@ -259,6 +264,8 @@
                   drinkIce: "",
                   drinkSugar: "",
                   drinkTopping: [],
+                  drinkPS: "",
+                  order: [],
                   iceType: ["正常冰", "少冰", "微冰", "去冰", "熱"],
                   sugarType: ["全糖", "七分", "半糖", "三分", "無糖"],
                   toppingsType: ["珍珠", "粉條", "小粉圓", "椰果", "芋頭"],
@@ -379,15 +386,21 @@
               methods: {
                 clickDrinks(drink) {
                   this.chooseDrinksFirst = false;
-                  this.currentDrink = {
-                    num: (this.num = 1),
-                    ice: (this.drinkIce = "正常冰"),
-                    sugar: (this.drinkSugar = "全糖"),
+                  this.currentDrink = { ...drink };
+                  this.num = 1;
+                  this.drinkIce = "正常冰";
+                  this.drinkSugar = "全糖";
+                },
+                addDrinks() {
+                  this.order.push({
+                    name: this.currentDrink.name,
+                    num: this.num,
+                    ice: this.drinkIce,
+                    sugar: this.drinkSugar,
                     toppings: this.drinkTopping,
-                    ...drink,
-                  };
-
-                  console.log(this.currentDrink);
+                    ps: this.drinkPS,
+                  });
+                  console.log(this.order);
                 },
               },
             };
