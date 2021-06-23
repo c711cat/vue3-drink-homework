@@ -27,6 +27,7 @@
                     <a
                       v-for="drink in products"
                       :key="drink.name"
+                      @click="clickDrinks"
                       href="#"
                       class="list-group-item list-group-item-action"
                     >
@@ -46,7 +47,26 @@
                 </div>
                 <div class="col-md-8">
                   <div class="card mb-2">
-                    <!-- <div class="position-absolute text-white d-flex align-items-center justify-content-center" style="top: 0;bottom: 0;left: 0;right: 0;background-color: rgba(0, 0, 0, 0.65); z-index: 100;">請先選擇飲品</div> -->
+                    <div
+                      v-if="chooseDrinksFirst"
+                      class="
+                        position-absolute
+                        text-white
+                        d-flex
+                        align-items-center
+                        justify-content-center
+                      "
+                      style="
+                        top: 0;
+                        bottom: 0;
+                        left: 0;
+                        right: 0;
+                        background-color: rgba(0, 0, 0, 0.65);
+                        z-index: 100;
+                      "
+                    >
+                      請先選擇飲品
+                    </div>
                     <div class="card-body px-4">
                       <div class="mb-3">
                         <label for="productNum" class="form-label">數量</label>
@@ -226,6 +246,7 @@
             const App = {
               data() {
                 return {
+                  chooseDrinksFirst: true,
                   iceType: ["正常冰", "少冰", "微冰", "去冰", "熱"],
                   sugarType: ["全糖", "七分", "半糖", "三分", "無糖"],
                   toppingsType: ["珍珠", "粉條", "小粉圓", "椰果", "芋頭"],
@@ -342,6 +363,11 @@
                     },
                   ],
                 };
+              },
+              methods: {
+                clickDrinks() {
+                  this.chooseDrinksFirst = false;
+                },
               },
             };
 
