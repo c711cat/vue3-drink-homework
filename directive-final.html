@@ -102,14 +102,18 @@
                         <label for="productNum" class="form-label d-block"
                           >加料</label
                         >
-                        <div class="form-check form-check-inline">
+                        <div
+                          class="form-check form-check-inline"
+                          v-for="(topping,t) in toppingsType"
+                          :key=" 'topping'+ t"
+                        >
                           <input
                             class="form-check-input"
                             type="checkbox"
-                            id="椰果"
+                            :id="'topping'+ t"
                           />
-                          <label class="form-check-label" for="椰果"
-                            >椰果</label
+                          <label class="form-check-label" :for="'topping'+ t"
+                            >{{topping}}</label
                           >
                         </div>
                       </div>
