@@ -82,15 +82,19 @@
                         <label for="productNum" class="form-label d-block"
                           >甜度*</label
                         >
-                        <div class="form-check form-check-inline">
+                        <div
+                          class="form-check form-check-inline"
+                          v-for="(sugar,s) in sugarType"
+                          :key=" 'sugar'+ s"
+                        >
                           <input
                             class="form-check-input"
                             name="sugarType"
                             type="radio"
-                            id="全糖"
+                            :id="'sugar'+ s"
                           />
-                          <label class="form-check-label" for="全糖"
-                            >全糖</label
+                          <label class="form-check-label" :for="'sugar'+ s"
+                            >{{sugar}}</label
                           >
                         </div>
                       </div>
