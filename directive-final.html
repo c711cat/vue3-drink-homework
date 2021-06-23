@@ -136,6 +136,8 @@
                             class="form-check-input"
                             type="checkbox"
                             :id="'topping'+ t"
+                            v-model="drinkTopping"
+                            :value="topping"
                           />
                           <label class="form-check-label" :for="'topping'+ t"
                             >{{topping}}</label
@@ -252,10 +254,11 @@
               data() {
                 return {
                   chooseDrinksFirst: true,
-                  order: {},
+                  currentDrink: {},
                   num: "",
                   drinkIce: "",
                   drinkSugar: "",
+                  drinkTopping: [],
                   iceType: ["正常冰", "少冰", "微冰", "去冰", "熱"],
                   sugarType: ["全糖", "七分", "半糖", "三分", "無糖"],
                   toppingsType: ["珍珠", "粉條", "小粉圓", "椰果", "芋頭"],
@@ -376,9 +379,15 @@
               methods: {
                 clickDrinks(drink) {
                   this.chooseDrinksFirst = false;
-                  this.num = 1;
-                  this.drinkIce = "正常冰";
-                  this.drinkSugar = "全糖";
+                  this.currentDrink = {
+                    num: (this.num = 1),
+                    ice: (this.drinkIce = "正常冰"),
+                    sugar: (this.drinkSugar = "全糖"),
+                    toppings: this.drinkTopping,
+                    ...drink,
+                  };
+
+                  console.log(this.currentDrink);
                 },
               },
             };
