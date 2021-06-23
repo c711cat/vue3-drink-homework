@@ -196,7 +196,7 @@
                             </th>
                             <td>{{item.ice}}</td>
                             <td>{{item.sugar}}</td>
-                            <td>{{item.toppings}}</td>
+                            <td>{{item.toppings.join(', ')}}</td>
                             <td>{{item.price}}</td>
                             <td>{{item.num}}</td>
                             <td class="text-end">{{item.subTotal}}</td>
@@ -259,8 +259,8 @@
               data() {
                 return {
                   chooseDrinksFirst: true,
-                  temporarilyOrder:false,
-                  finalOrder:false,
+                  temporarilyOrder: false,
+                  finalOrder: false,
                   currentDrink: {},
                   num: "",
                   drinkIce: "",
@@ -401,11 +401,12 @@
                     sugar: this.drinkSugar,
                     toppings: this.drinkTopping,
                     ps: this.drinkPS,
-                    price:this.currentDrink.price,
-                    subTotal:this.num * this.currentDrink.price
+                    price: this.currentDrink.price,
+                    subTotal: this.num * this.currentDrink.price,
                   });
+
                   console.log(this.order);
-                  this.temporarilyOrder = true
+                  this.temporarilyOrder = true;
                 },
               },
             };
