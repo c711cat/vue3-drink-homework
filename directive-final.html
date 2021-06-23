@@ -173,7 +173,7 @@
                     </div>
                   </div>
                   <div class="card">
-                    <div class="card-body">
+                    <div class="card-body" v-if="temporarilyOrder">
                       <table class="table">
                         <thead>
                           <tr>
@@ -212,7 +212,7 @@
                 </div>
               </div>
             </div>
-            <div class="bg-light p-3 mt-3">
+            <div class="bg-light p-3 mt-3" v-if="finalOrder">
               <div
                 class="bg-white p-3 d-flex flex-column"
                 style="min-height: 450px"
@@ -259,6 +259,8 @@
               data() {
                 return {
                   chooseDrinksFirst: true,
+                  temporarilyOrder:false,
+                  finalOrder:false,
                   currentDrink: {},
                   num: "",
                   drinkIce: "",
@@ -401,6 +403,7 @@
                     ps: this.drinkPS,
                   });
                   console.log(this.order);
+                  this.temporarilyOrder = true
                 },
               },
             };
