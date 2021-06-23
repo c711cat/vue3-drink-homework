@@ -199,7 +199,7 @@
                             <td>{{item.toppings}}</td>
                             <td>{{item.price}}</td>
                             <td>{{item.num}}</td>
-                            <td class="text-end">{{item.price*item.num}}</td>
+                            <td class="text-end">{{item.subTotal}}</td>
                           </tr>
                         </tbody>
                       </table>
@@ -402,6 +402,7 @@
                     toppings: this.drinkTopping,
                     ps: this.drinkPS,
                     price:this.currentDrink.price,
+                    subTotal:this.num * this.currentDrink.price
                   });
                   console.log(this.order);
                   this.temporarilyOrder = true
