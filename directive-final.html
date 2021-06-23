@@ -186,20 +186,20 @@
                             <th scope="col">小計</th>
                           </tr>
                         </thead>
-                        <tbody>
+                        <tbody v-for="(item, index) in order" :key="index">
                           <tr>
                             <th scope="row">
-                              珍珠鮮奶茶<br />
+                              {{item.name}}<br />
                               <small class="text-muted fw-normal"
-                                >備註：阿姨，我不想努力了</small
+                                >備註：{{item.ps}}</small
                               >
                             </th>
-                            <td>正常冰</td>
-                            <td>全糖</td>
-                            <td>椰果</td>
-                            <td>70</td>
-                            <td>1</td>
-                            <td class="text-end">70</td>
+                            <td>{{item.ice}}</td>
+                            <td>{{item.sugar}}</td>
+                            <td>{{item.toppings}}</td>
+                            <td>{{item.price}}</td>
+                            <td>{{item.num}}</td>
+                            <td class="text-end">{{item.price*item.num}}</td>
                           </tr>
                         </tbody>
                       </table>
@@ -401,6 +401,7 @@
                     sugar: this.drinkSugar,
                     toppings: this.drinkTopping,
                     ps: this.drinkPS,
+                    price:this.currentDrink.price,
                   });
                   console.log(this.order);
                   this.temporarilyOrder = true
