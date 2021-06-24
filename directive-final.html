@@ -203,7 +203,7 @@
                           </tr>
                         </tbody>
                       </table>
-                      <p class="text-end">共 NT$ 70 元</p>
+                      <p class="text-end">共 NT$ {{finalPrice}} 元</p>
                       <button class="btn btn-sm btn-secondary w-100">
                         產生訂單
                       </button>
@@ -267,7 +267,10 @@
                   drinkSugar: "",
                   drinkTopping: [],
                   drinkPS: "",
+                  drinkSubtotal: [],
+                  toppingsPrice: "",
                   order: [],
+                  finalPrice: "",
                   iceType: ["正常冰", "少冰", "微冰", "去冰", "熱"],
                   sugarType: ["全糖", "七分", "半糖", "三分", "無糖"],
                   toppingsType: ["珍珠", "粉條", "小粉圓", "椰果", "芋頭"],
@@ -394,6 +397,12 @@
                   this.drinkSugar = "全糖";
                 },
                 addDrinks() {
+                  this.toppingsPrice = this.drinkTopping.length * 10;
+                  console.log(this.toppingsPrice);
+                  this.drinkSubtotal.push(
+                    this.num * (this.currentDrink.price + this.toppingsPrice)
+                  );
+                  console.log(this.drinkSubtotal);
                   this.order.push({
                     name: this.currentDrink.name,
                     num: this.num,
@@ -401,11 +410,15 @@
                     sugar: this.drinkSugar,
                     toppings: this.drinkTopping,
                     ps: this.drinkPS,
-                    price: this.currentDrink.price,
-                    subTotal: this.num * this.currentDrink.price,
+                    price: this.currentDrink.price + this.toppingsPrice,
+                    subTotal:
+                      this.num * (this.currentDrink.price + this.toppingsPrice),
                   });
-
-                  console.log(this.order);
+                  let total = 0;
+                  this.drinkSubtotal.forEach(function (item, index) {
+                    total += item;
+                  });
+                  this.finalPrice = total;
                   this.temporarilyOrder = true;
                 },
               },
