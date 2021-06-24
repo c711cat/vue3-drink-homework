@@ -427,19 +427,7 @@
                 },
                 generateOrder() {
                   this.finalOrder = true;
-                  this.now =
-                    new Date().getFullYear() +
-                    "/" +
-                    ("0" + (new Date().getMonth() + 1)).substr(-2) +
-                    "/" +
-                    ("0" + new Date().getDate()).substr(-2) +
-                    " " +
-                    (new Date().getHours() < 12 ? "上午" : "下午") +
-                    new Date().getHours() +
-                    ":" +
-                    new Date().getUTCMinutes() +
-                    ":" +
-                    new Date().getSeconds();
+                  this.now = new Date().toLocaleString();
                 },
               },
             };
