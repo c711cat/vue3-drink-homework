@@ -232,7 +232,7 @@
                       <th scope="col">小計</th>
                     </tr>
                   </thead>
-                  <tbody v-for="(item,index) in order" :key="index">
+                  <tbody v-for="(item,index) in drinkFinalOrder" :key="index">
                     <tr>
                       <th scope="row">
                         {{item.name}}<br />
@@ -273,6 +273,7 @@
                   drinkSubtotal: [],
                   toppingsPrice: "",
                   order: [],
+                  drinkFinalOrder: [],
                   finalPrice: "",
                   now: "",
                   iceType: ["正常冰", "少冰", "微冰", "去冰", "熱"],
@@ -427,6 +428,8 @@
                   this.temporarilyOrder = true;
                 },
                 generateOrder() {
+                  this.drinkFinalOrder = [...this.order];
+                  console.log(this.drinkFinalOrder);
                   this.finalOrder = true;
                   this.temporarilyOrder = false;
                   this.now = new Date().toLocaleString();
