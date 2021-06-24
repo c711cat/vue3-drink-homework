@@ -405,11 +405,9 @@
                 addDrinks() {
                   this.chooseDrinksFirst = true;
                   this.toppingsPrice = this.drinkTopping.length * 10;
-                  console.log(this.toppingsPrice);
                   this.drinkSubtotal.push(
                     this.num * (this.currentDrink.price + this.toppingsPrice)
                   );
-                  console.log(this.drinkSubtotal);
                   this.order.push({
                     name: this.currentDrink.name,
                     num: this.num,
@@ -436,7 +434,6 @@
                 generateOrder() {
                   this.drinkFinalOrder = [...this.order];
                   this.order = [];
-                  console.log(this.drinkFinalOrder);
                   this.finalOrder = true;
                   this.temporarilyOrder = false;
                   this.now = new Date().toLocaleString();
