@@ -119,6 +119,7 @@
                             :id="'sugar'+ s"
                             v-model="drinkSugar"
                             :value="sugar"
+                            :disabled="disableSugarType(sugar)"
                           />
                           <label class="form-check-label" :for="'sugar'+ s"
                             >{{sugar}}</label
@@ -403,6 +404,20 @@
                   }
                   if (this.currentDrink.defaults.ice === "熱") {
                     if (iceType === "熱") {
+                      return false;
+                    } else {
+                      return true;
+                    }
+                  } else {
+                    return false;
+                  }
+                },
+                disableSugarType(sugarType) {
+                  if (this.currentDrink.defaults === undefined) {
+                    return false;
+                  }
+                  if (this.currentDrink.defaults.sugar === "全糖") {
+                    if (sugarType === "全糖") {
                       return false;
                     } else {
                       return true;
