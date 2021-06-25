@@ -96,6 +96,7 @@
                             :id=" 'ice'+ i"
                             v-model="drinkIce"
                             :value="ice"
+                            :disabled="disableIceType(ice)"
                           />
                           <label class="form-check-label" :for="'ice'+ i"
                             >{{ice}}</label
@@ -396,12 +397,31 @@
                 };
               },
               methods: {
+                disableIceType(iceType) {
+                  if (this.currentDrink.defaults === undefined) {
+                    return false;
+                  }
+                  if (this.currentDrink.defaults.ice === "熱") {
+                    if (iceType === "熱") {
+                      return false;
+                    } else {
+                      return true;
+                    }
+                  } else {
+                    return false;
+                  }
+                },
                 clickDrinks(drink) {
                   this.chooseDrinksFirst = false;
                   this.currentDrink = { ...drink };
                   this.num = 1;
                   this.drinkIce = "正常冰";
                   this.drinkSugar = "全糖";
+                  if (this.currentDrink.defaults.ice === "熱") {
+                    this.drinkIce = "熱";
+                  } else {
+                    this.drinkIce = "正常冰";
+                  }
                 },
                 addDrinks() {
                   this.chooseDrinksFirst = true;
