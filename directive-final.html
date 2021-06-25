@@ -141,6 +141,7 @@
                             :id="'topping'+ t"
                             v-model="drinkTopping"
                             :value="topping"
+                            :disabled="disableTopping(topping)"
                           />
                           <label class="form-check-label" :for="'topping'+ t"
                             >{{topping}}</label
@@ -421,6 +422,27 @@
                       return false;
                     } else {
                       return true;
+                    }
+                  } else {
+                    return false;
+                  }
+                },
+                disableTopping(ingredient) {
+                  if (this.currentDrink.defaults === undefined) {
+                    return false;
+                  }
+                  if (this.currentDrink.defaults.toppings[0] === "珍珠") {
+                    if (ingredient === "珍珠") {
+                      return true;
+                    } else {
+                      return false;
+                    }
+                  }
+                  if (this.currentDrink.defaults.toppings[0] === "椰果") {
+                    if (ingredient === "椰果") {
+                      return true;
+                    } else {
+                      return false;
                     }
                   } else {
                     return false;
