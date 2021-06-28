@@ -193,8 +193,8 @@
                             <th scope="col">小計</th>
                           </tr>
                         </thead>
-                        <tbody v-for="(item, index) in tempOrder" :key="index">
-                          <tr>
+                        <tbody>
+                          <tr v-for="(item, index) in tempOrder" :key="index">
                             <th scope="row">
                               {{item.name}}<br />
                               <small class="text-muted fw-normal"
@@ -239,8 +239,8 @@
                       <th scope="col">小計</th>
                     </tr>
                   </thead>
-                  <tbody v-for="(item,index) in drinkFinalOrder" :key="index">
-                    <tr>
+                  <tbody>
+                    <tr v-for="(item,index) in drinkFinalOrder" :key="index">
                       <th scope="row">
                         {{item.name}}<br />
                         <small class="text-muted fw-normal"
