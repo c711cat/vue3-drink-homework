@@ -278,7 +278,6 @@
                     drinkPS: "",
                   },
                   drinkTopping: [],
-                  drinkSubtotal: [],
                   toppingsPrice: "",
                   order: [],
                   drinkFinalOrder: [],
@@ -463,11 +462,6 @@
                 addDrinks() {
                   this.chooseDrinksFirst = true;
                   this.toppingsPrice = this.drinkTopping.length * 10;
-                  this.drinkSubtotal.push(
-                    this.currentDrink.num *
-                      (this.currentDrink.price + this.toppingsPrice)
-                  );
-
                   this.order.push({
                     name: this.currentDrink.name,
                     num: this.currentDrink.num,
@@ -481,9 +475,11 @@
                       (this.currentDrink.price + this.toppingsPrice),
                   });
                   let total = 0;
-                  this.drinkSubtotal.forEach(function (item, index) {
-                    total += item;
+                  this.order.forEach(function (item, index) {
+                    total += item.subTotal;
                   });
+                  console.log(this.drinkSubtotal);
+                  console.log(this.order);
                   this.finalPrice = total;
                   this.currentDrink.num = "";
                   this.currentDrink.drinkIce = "";
