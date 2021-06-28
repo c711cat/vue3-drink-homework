@@ -139,7 +139,7 @@
                             class="form-check-input"
                             type="checkbox"
                             :id="'topping'+ index"
-                            v-model="drinkTopping"
+                            v-model="currentDrink.drinkTopping"
                             :value="topping"
                             :disabled="disableTopping(topping)"
                           />
@@ -281,8 +281,9 @@
                     drinkIce: "",
                     drinkSugar: "",
                     drinkPS: "",
+                    drinkTopping: [],
                   },
-                  drinkTopping: [],
+
                   toppingsPrice: "",
                   tempOrder: [],
                   drinkFinalOrder: [],
@@ -457,22 +458,25 @@
                 },
                 clickDrinks(drink) {
                   this.chooseDrinksFirst = false;
-                  this.currentDrink = { ...drink };
-                  this.currentDrink.num = 1;
-                  this.currentDrink.drinkIce = "正常冰";
-                  this.currentDrink.drinkSugar = "全糖";
-                  this.currentDrink.drinkIce =
-                    this.currentDrink.defaults.ice === "熱" ? "熱" : "正常冰";
+                  this.currentDrink = {
+                    ...drink,
+                    num: 1,
+                    drinkTopping: [],
+                    drinkIce: "正常冰",
+                    drinkSugar: "全糖",
+                    drinkIce: drink.defaults.ice === "熱" ? "熱" : "正常冰",
+                  };
                 },
                 addDrinks() {
                   this.chooseDrinksFirst = true;
-                  this.toppingsPrice = this.drinkTopping.length * 10;
+                  this.toppingsPrice =
+                    this.currentDrink.drinkTopping.length * 10;
                   this.tempOrder.push({
                     name: this.currentDrink.name,
                     num: this.currentDrink.num,
                     ice: this.currentDrink.drinkIce,
                     sugar: this.currentDrink.drinkSugar,
-                    toppings: this.drinkTopping,
+                    toppings: this.currentDrink.drinkTopping,
                     ps: this.currentDrink.drinkPS,
                     price: this.currentDrink.price + this.toppingsPrice,
                     subTotal:
@@ -496,7 +500,7 @@
                   this.currentDrink.num = "";
                   this.currentDrink.drinkIce = "";
                   this.currentDrink.drinkSugar = "";
-                  this.drinkTopping = [];
+                  this.currentDrink.drinkTopping = [];
                   this.currentDrink.drinkPS = "";
                   this.chooseDrinksFirst = true;
                 },
