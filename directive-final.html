@@ -194,7 +194,10 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr v-for="(item, index) in tempOrder" :key="index">
+                          <tr
+                            v-for="(item, index) in tempOrder"
+                            :key="'item'+ index"
+                          >
                             <th scope="row">
                               {{item.name}}<br />
                               <small class="text-muted fw-normal"
@@ -240,7 +243,10 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr v-for="(item,index) in drinkFinalOrder" :key="index">
+                    <tr
+                      v-for="(item,index) in drinkFinalOrder"
+                      :key="'item'+ index"
+                    >
                       <th scope="row">
                         {{item.name}}<br />
                         <small class="text-muted fw-normal"
