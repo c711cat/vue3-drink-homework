@@ -193,7 +193,7 @@
                             <th scope="col">小計</th>
                           </tr>
                         </thead>
-                        <tbody v-for="(item, index) in order" :key="index">
+                        <tbody v-for="(item, index) in tempOrder" :key="index">
                           <tr>
                             <th scope="row">
                               {{item.name}}<br />
@@ -279,7 +279,7 @@
                   },
                   drinkTopping: [],
                   toppingsPrice: "",
-                  order: [],
+                  tempOrder: [],
                   drinkFinalOrder: [],
                   finalPrice: "",
                   now: "",
@@ -462,7 +462,7 @@
                 addDrinks() {
                   this.chooseDrinksFirst = true;
                   this.toppingsPrice = this.drinkTopping.length * 10;
-                  this.order.push({
+                  this.tempOrder.push({
                     name: this.currentDrink.name,
                     num: this.currentDrink.num,
                     ice: this.currentDrink.drinkIce,
@@ -475,11 +475,11 @@
                       (this.currentDrink.price + this.toppingsPrice),
                   });
                   let total = 0;
-                  this.order.forEach(function (item, index) {
+                  this.tempOrder.forEach(function (item, index) {
                     total += item.subTotal;
                   });
                   console.log(this.drinkSubtotal);
-                  console.log(this.order);
+                  console.log(this.tempOrder);
                   this.finalPrice = total;
                   this.currentDrink.num = "";
                   this.currentDrink.drinkIce = "";
@@ -489,8 +489,8 @@
                   this.temporarilyOrder = true;
                 },
                 generateOrder() {
-                  this.drinkFinalOrder = [...this.order];
-                  this.order = [];
+                  this.drinkFinalOrder = [...this.tempOrder];
+                  this.tempOrder = [];
                   this.finalOrder = true;
                   this.temporarilyOrder = false;
                   this.now = new Date().toLocaleString();
