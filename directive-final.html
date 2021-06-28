@@ -180,7 +180,7 @@
                     </div>
                   </div>
                   <div class="card">
-                    <div class="card-body" v-if="temporarilyOrder">
+                    <div class="card-body" v-if="tempOrder.length > 0">
                       <table class="table">
                         <thead>
                           <tr>
@@ -269,7 +269,6 @@
               data() {
                 return {
                   chooseDrinksFirst: true,
-                  temporarilyOrder: false,
                   finalOrder: false,
                   currentDrink: {
                     num: "",
@@ -486,13 +485,11 @@
                   this.currentDrink.drinkSugar = "";
                   this.drinkTopping = [];
                   this.currentDrink.drinkPS = "";
-                  this.temporarilyOrder = true;
                 },
                 generateOrder() {
                   this.drinkFinalOrder = [...this.tempOrder];
                   this.tempOrder = [];
                   this.finalOrder = true;
-                  this.temporarilyOrder = false;
                   this.now = new Date().toLocaleString();
                 },
                 cancel() {
