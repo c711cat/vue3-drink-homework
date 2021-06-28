@@ -480,11 +480,7 @@
                   console.log(this.drinkSubtotal);
                   console.log(this.tempOrder);
                   this.finalPrice = total;
-                  this.currentDrink.num = "";
-                  this.currentDrink.drinkIce = "";
-                  this.currentDrink.drinkSugar = "";
-                  this.drinkTopping = [];
-                  this.currentDrink.drinkPS = "";
+                  this.cancel();
                 },
                 generateOrder() {
                   this.drinkFinalOrder = [...this.tempOrder];
