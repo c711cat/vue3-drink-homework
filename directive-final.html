@@ -77,7 +77,7 @@
                           id="productNum"
                           placeholder="數量"
                           min="0"
-                          v-model="num"
+                          v-model="currentDrink.num"
                         />
                       </div>
                       <div class="mb-3">
@@ -94,7 +94,7 @@
                             name="iceType"
                             type="radio"
                             :id=" 'ice'+ i"
-                            v-model="drinkIce"
+                            v-model="currentDrink.drinkIce"
                             :value="ice"
                             :disabled="disableIceType(ice)"
                           />
@@ -117,7 +117,7 @@
                             name="sugarType"
                             type="radio"
                             :id="'sugar'+ s"
-                            v-model="drinkSugar"
+                            v-model="currentDrink.drinkSugar"
                             :value="sugar"
                             :disabled="disableSugarType(sugar)"
                           />
@@ -153,7 +153,7 @@
                           >備註</label
                         >
                         <textarea
-                          v-model="drinkPS"
+                          v-model="currentDrink.drinkPS"
                           class="form-control"
                           id="productNotice"
                           rows="2"
@@ -269,12 +269,13 @@
                   chooseDrinksFirst: true,
                   temporarilyOrder: false,
                   finalOrder: false,
-                  currentDrink: {},
-                  num: "",
-                  drinkIce: "",
-                  drinkSugar: "",
+                  currentDrink: {
+                    num: "",
+                    drinkIce: "",
+                    drinkSugar: "",
+                    drinkPS: "",
+                  },
                   drinkTopping: [],
-                  drinkPS: "",
                   drinkSubtotal: [],
                   toppingsPrice: "",
                   order: [],
@@ -451,42 +452,42 @@
                 clickDrinks(drink) {
                   this.chooseDrinksFirst = false;
                   this.currentDrink = { ...drink };
-                  this.num = 1;
-                  this.drinkIce = "正常冰";
-                  this.drinkSugar = "全糖";
-                  if (this.currentDrink.defaults.ice === "熱") {
-                    this.drinkIce = "熱";
-                  } else {
-                    this.drinkIce = "正常冰";
-                  }
+                  this.currentDrink.num = 1;
+                  this.currentDrink.drinkIce = "正常冰";
+                  this.currentDrink.drinkSugar = "全糖";
+                  this.currentDrink.drinkIce =
+                    this.currentDrink.defaults.ice === "熱" ? "熱" : "正常冰";
                 },
                 addDrinks() {
                   this.chooseDrinksFirst = true;
                   this.toppingsPrice = this.drinkTopping.length * 10;
                   this.drinkSubtotal.push(
-                    this.num * (this.currentDrink.price + this.toppingsPrice)
+                    this.currentDrink.num *
+                      (this.currentDrink.price + this.toppingsPrice)
                   );
+
                   this.order.push({
                     name: this.currentDrink.name,
-                    num: this.num,
-                    ice: this.drinkIce,
-                    sugar: this.drinkSugar,
+                    num: this.currentDrink.num,
+                    ice: this.currentDrink.drinkIce,
+                    sugar: this.currentDrink.drinkSugar,
                     toppings: this.drinkTopping,
-                    ps: this.drinkPS,
+                    ps: this.currentDrink.drinkPS,
                     price: this.currentDrink.price + this.toppingsPrice,
                     subTotal:
-                      this.num * (this.currentDrink.price + this.toppingsPrice),
+                      this.currentDrink.num *
+                      (this.currentDrink.price + this.toppingsPrice),
                   });
                   let total = 0;
                   this.drinkSubtotal.forEach(function (item, index) {
                     total += item;
                   });
                   this.finalPrice = total;
-                  this.num = "";
-                  this.drinkIce = "";
-                  this.drinkSugar = "";
+                  this.currentDrink.num = "";
+                  this.currentDrink.drinkIce = "";
+                  this.currentDrink.drinkSugar = "";
                   this.drinkTopping = [];
-                  this.drinkPS = "";
+                  this.currentDrink.drinkPS = "";
                   this.temporarilyOrder = true;
                 },
                 generateOrder() {
@@ -497,11 +498,11 @@
                   this.now = new Date().toLocaleString();
                 },
                 cancel() {
-                  this.num = "";
-                  this.drinkIce = "";
-                  this.drinkSugar = "";
+                  this.currentDrink.num = "";
+                  this.currentDrink.drinkIce = "";
+                  this.currentDrink.drinkSugar = "";
                   this.drinkTopping = [];
-                  this.drinkPS = "";
+                  this.currentDrink.drinkPS = "";
                   this.chooseDrinksFirst = true;
                 },
               },
