@@ -86,19 +86,19 @@
                         >
                         <div
                           class="form-check form-check-inline"
-                          v-for="(ice,i) in iceType"
+                          v-for="(ice,index) in iceType"
                           :key=" ice "
                         >
                           <input
                             class="form-check-input"
                             name="iceType"
                             type="radio"
-                            :id=" 'ice'+ i"
+                            :id=" 'ice'+ index"
                             v-model="currentDrink.drinkIce"
                             :value="ice"
                             :disabled="disableIceType(ice)"
                           />
-                          <label class="form-check-label" :for="'ice'+ i"
+                          <label class="form-check-label" :for="'ice'+ index"
                             >{{ice}}</label
                           >
                         </div>
@@ -109,19 +109,19 @@
                         >
                         <div
                           class="form-check form-check-inline"
-                          v-for="(sugar,s) in sugarType"
+                          v-for="(sugar,index) in sugarType"
                           :key=" sugar "
                         >
                           <input
                             class="form-check-input"
                             name="sugarType"
                             type="radio"
-                            :id="'sugar'+ s"
+                            :id="'sugar'+ index"
                             v-model="currentDrink.drinkSugar"
                             :value="sugar"
                             :disabled="disableSugarType(sugar)"
                           />
-                          <label class="form-check-label" :for="'sugar'+ s"
+                          <label class="form-check-label" :for="'sugar'+ index"
                             >{{sugar}}</label
                           >
                         </div>
@@ -132,18 +132,20 @@
                         >
                         <div
                           class="form-check form-check-inline"
-                          v-for="(topping,t) in toppingsType"
+                          v-for="(topping,index) in toppingsType"
                           :key=" topping "
                         >
                           <input
                             class="form-check-input"
                             type="checkbox"
-                            :id="'topping'+ t"
+                            :id="'topping'+ index"
                             v-model="drinkTopping"
                             :value="topping"
                             :disabled="disableTopping(topping)"
                           />
-                          <label class="form-check-label" :for="'topping'+ t"
+                          <label
+                            class="form-check-label"
+                            :for="'topping'+ index"
                             >{{topping}}</label
                           >
                         </div>
